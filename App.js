@@ -1,37 +1,63 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Button,
+  Pressable,
+} from 'react-native';
+
+import CharacterCard from './components/characterCard.js';
 
 const App = () => {
-  const thing = {
-    property1: 69,
-    hp: 30,
-  };
+  const characters = [
+    'Kaiper',
+    'Alfonse',
+    'Gar',
+    'Ghoul 1',
+    'Ghoul 2',
+    'Ghoul 3',
+    'Ghoul 4',
+    'Ghoul 5',
+    'Ghoul 6',
+    'Ghoul 7',
+    'Ghoul 8',
+    'Ghoul 9',
+    'Ghoul 10',
+    'Ghoul 11',
+    'Ghoul 12',
+  ];
 
-  const [count, setCount] = useState(0); // hp can be dynamic
+  // const on
+
+  // const [count, setCount] = useState(0); // hp can be dynamic
 
   const TapText = () => {
-    console.log("Tapped on Text!");
-    setCount(prevCount => prevCount + 1)
+    console.log('Tapped on Text!');
+    setCount((prevCount) => prevCount + 1);
     // functional component does not have state
     // so hooks are required
     // need multiple hooks for each character
   };
 
   return (
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <ScrollView>
+        {characters.map((character) => {
+          return (
+            <CharacterCard
+              key={character}
+              charName={character}
+              style={styles.card}
+            />
+          );
+        })}
+      </ScrollView>
 
-        <ScrollView>
-          <Text onPress={TapText} style={styles.card} alignItems='center' justifyContent='center'>Count: {count}</Text>
-          <Text style={styles.card}>Alfonse</Text>
-          <Text style={styles.card}>Gar</Text>
-          <Text style={styles.card}>Asstin</Text>
-          <Text style={styles.card}>Ghoul 1</Text>
-          <Text style={styles.ended}>END OF TURN</Text>
-        </ScrollView>
-
-        <View>
-          {/* <Button
+      <View>
+        {/* <Button
           title='Add New Char'
           style={styles.buttons}
           fontSize='36'
@@ -46,13 +72,16 @@ const App = () => {
           color='#FFF596'
           borderRadius='8'/> */}
 
-          <Text style={styles.buttons} color='#5D2725'>ADD NEW</Text>
-          <Text style={styles.buttons} color='#5D2725'>RESET</Text>
-        </View>
-
-        <StatusBar style='auto' />
-
+        <Pressable style={styles.buttons} color="#5D2725">
+          <Text>ADD NEW</Text>
+        </Pressable>
+        <Pressable style={styles.buttons} color="#5D2725">
+          <Text>RESET</Text>
+        </Pressable>
       </View>
+
+      <StatusBar style="auto" />
+    </View>
   );
 };
 
@@ -82,6 +111,7 @@ const styles = StyleSheet.create({
     color: '#5D2725',
   },
   buttons: {
+    marginTop: 5,
     paddingLeft: 20,
     fontSize: 36,
     fontWeight: 'bold',
@@ -98,6 +128,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 15,
+    elevation: 5,
   },
   ended: {
     paddingLeft: 20,
@@ -110,8 +141,8 @@ const styles = StyleSheet.create({
     margin: 5,
     backgroundColor: '#696969',
     borderRadius: 16,
-    color: "#000000",
-  }
+    color: '#000000',
+  },
 });
 
 export default App;
