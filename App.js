@@ -8,21 +8,21 @@ const App = () => {
     hp: 30,
   };
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0); // hp can be dynamic
 
   const TapText = () => {
     console.log("Tapped on Text!");
     setCount(prevCount => prevCount + 1)
-  }
-
+    // functional component does not have state
+    // so hooks are required
+    // need multiple hooks for each character
+  };
 
   return (
       <View style={styles.container}>
 
-
         <ScrollView>
-          <Text onPress={TapText} style={styles.card}>Count: {count}</Text>
-          <Text onPress={TapText} style={styles.card}>Count: {count}</Text>
+          <Text onPress={TapText} style={styles.card} alignItems='center' justifyContent='center'>Count: {count}</Text>
           <Text style={styles.card}>Alfonse</Text>
           <Text style={styles.card}>Gar</Text>
           <Text style={styles.card}>Asstin</Text>
