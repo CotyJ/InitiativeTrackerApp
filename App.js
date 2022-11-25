@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, Pressable } from 'react-native';
 
 import CharacterCard from './components/characterCard.js';
+import appStyles from './appStyles.js';
 
 const App = () => {
   const characters = [
@@ -23,15 +24,20 @@ const App = () => {
     'Ghoul 12',
   ];
 
+  // Refactor character array into characters objects
   var charactersObj = {};
 
-  const onCreateNew = () => {
+  function useForceUpdate() {
+    const [value, setValue] = useState(0); // integer state
     console.log('Create New Char Only Works Once!');
-    characters.push('New Char Who Dis?');
-  };
+    characters.push('1234567890123');
+    return () => setValue((value) => value + 0); // update state to force render
+  }
+
+  const forceUpdate = useForceUpdate();
 
   return (
-    <View style={styles.container}>
+    <View style={appStyles.container}>
       <ScrollView>
         {characters.map((character) => {
           return (
@@ -60,7 +66,7 @@ const App = () => {
           color='#FFF596'
           borderRadius='8'/> */}
 
-        <Pressable style={styles.buttons} color="#5D2725" onPress={onCreateNew}>
+        <Pressable style={styles.buttons} color="#5D2725" onPress={forceUpdate}>
           <Text style={styles.text}>ADD NEW</Text>
         </Pressable>
         <Pressable style={styles.buttons} color="#5D2725">
@@ -73,67 +79,6 @@ const App = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    borderColor: 'yellow',
-    paddingTop: 40, // safeareaview not working
-    backgroundColor: '#5D2725',
-    alignItems: 'center',
-  },
-  card: {
-    paddingLeft: 20,
-    fontSize: '6em',
-    fontWeight: 'bold',
-    flex: 1,
-    borderColor: '#4D3324',
-    borderWidth: 3,
-    minWidth: '80%',
-    height: 50,
-    // margin: 5,
-    justifyContent: 'center',
-    backgroundColor: '#FFF596',
-    alignItems: 'center',
-    borderRadius: 16,
-    color: '#5D2725',
-  },
-  buttons: {
-    marginTop: 5,
-    paddingLeft: 20,
-    fontSize: 36,
-    fontWeight: 'bold',
-    flex: 1,
-    borderColor: '#4D3324',
-    borderWidth: 2,
-    minWidth: '80%',
-    maxWidth: '80%',
-    maxHeight: 60,
-    margin: 5,
-    backgroundColor: '#FFF596',
-    borderRadius: 16,
-    color: '#5D2725',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 15,
-    elevation: 5,
-  },
-  ended: {
-    paddingLeft: 20,
-    fontSize: 36,
-    fontWeight: 'bold',
-    flex: 1,
-    borderColor: '#4D3324',
-    borderWidth: 2,
-    maxHeight: 60,
-    margin: 5,
-    backgroundColor: '#696969',
-    borderRadius: 16,
-    color: '#000000',
-  },
-  text: {
-    fontSize: 36,
-    fontWeight: '600',
-  },
-});
+const styles = StyleSheet.create(appStyles);
 
 export default App;
