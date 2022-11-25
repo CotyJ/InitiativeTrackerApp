@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Button,
-  Pressable,
-} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Pressable } from 'react-native';
 
 import CharacterCard from './components/characterCard.js';
 
@@ -30,16 +23,11 @@ const App = () => {
     'Ghoul 12',
   ];
 
-  // const on
+  var charactersObj = {};
 
-  // const [count, setCount] = useState(0); // hp can be dynamic
-
-  const TapText = () => {
-    console.log('Tapped on Text!');
-    setCount((prevCount) => prevCount + 1);
-    // functional component does not have state
-    // so hooks are required
-    // need multiple hooks for each character
+  const onCreateNew = () => {
+    console.log('Create New Char Only Works Once!');
+    characters.push('New Char Who Dis?');
   };
 
   return (
@@ -72,11 +60,11 @@ const App = () => {
           color='#FFF596'
           borderRadius='8'/> */}
 
-        <Pressable style={styles.buttons} color="#5D2725">
-          <Text>ADD NEW</Text>
+        <Pressable style={styles.buttons} color="#5D2725" onPress={onCreateNew}>
+          <Text style={styles.text}>ADD NEW</Text>
         </Pressable>
         <Pressable style={styles.buttons} color="#5D2725">
-          <Text>RESET</Text>
+          <Text style={styles.text}>RESET</Text>
         </Pressable>
       </View>
 
@@ -95,15 +83,14 @@ const styles = StyleSheet.create({
   },
   card: {
     paddingLeft: 20,
-    fontSize: 36,
+    fontSize: '6em',
     fontWeight: 'bold',
     flex: 1,
     borderColor: '#4D3324',
     borderWidth: 3,
     minWidth: '80%',
     height: 50,
-    // maxHeight: 50,
-    margin: 5,
+    // margin: 5,
     justifyContent: 'center',
     backgroundColor: '#FFF596',
     alignItems: 'center',
@@ -142,6 +129,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#696969',
     borderRadius: 16,
     color: '#000000',
+  },
+  text: {
+    fontSize: 36,
+    fontWeight: '600',
   },
 });
 

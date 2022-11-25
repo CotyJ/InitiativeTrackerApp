@@ -26,20 +26,28 @@ const CharacterCard = (props) => {
       alignItems: 'center',
       borderRadius: 16,
       color: '#5D2725',
+      flexDirection: 'row',
     },
     hpText: {
-      color: 'red',
-      // flexDirection: '',
+      // color: 'red',
+      fontSize: 36,
+      flexDirection: 'row',
+      flex: 3,
+    },
+    heart: {
+      fontSize: 36,
+      flexDirection: 'row',
+      flex: 1,
     },
   });
 
   return (
     <View style={styles.card}>
-      <Text onPress={TapText} fontSize="32">
-        {props.charName}
+      <Text onPress={TapText} fontSize="32" style={styles.hpText}>
+        {`${props.charName} \t\t\t\t`}
       </Text>
 
-      <Text onPress={TapText} style={styles.hpText}>
+      <Text onPress={TapText} style={styles.heart}>
         🖤 {count}
       </Text>
     </View>
