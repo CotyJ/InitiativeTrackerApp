@@ -5,10 +5,13 @@ import appStyles from '../appStyles';
 const CharacterCard = (props) => {
   const [count, setCount] = useState(0);
 
+  // Tapping text handler
   const TapText = () => {
     console.log('Tapped on Text!');
     setCount((prevCount) => prevCount + 1);
   };
+
+  // Open card handler?
 
   const styles = StyleSheet.create(appStyles);
 
@@ -19,7 +22,7 @@ const CharacterCard = (props) => {
       </Text>
 
       <Text onPress={TapText} style={styles.heart}>
-        🖤 {count}
+        ❤ {count}
       </Text>
     </View>
   );
