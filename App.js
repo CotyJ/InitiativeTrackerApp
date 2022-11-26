@@ -4,8 +4,10 @@ import { StyleSheet, Text, View, ScrollView, Pressable } from 'react-native';
 
 import CharacterCard from './components/characterCard.js';
 import appStyles from './appStyles.js';
+import sortActed from './test.js';
 
 const App = () => {
+  // Temporary character storage. Refactor out later
   const characters = [
     'Kaiper',
     'Alfonse',
@@ -15,31 +17,39 @@ const App = () => {
     'Ghoul 3',
     'Ghoul 4',
     'Ghoul 5',
-    'Ghoul 6',
-    'Ghoul 7',
-    'Ghoul 8',
-    'Ghoul 9',
-    'Ghoul 10',
-    'Ghoul 11',
-    'Ghoul 12',
   ];
 
-  // Refactor character array into characters objects
-  var charactersObj = {};
+  const [value, setValue] = useState(0); // integer state
 
+  // Refactor character array into characters objects
+  // var charactersObj = {};
+
+  // Sort characters by initiative value
+
+  // If they have taken their turn, move them to below the "End of Turn" separator
+
+  // On tap of card, change their status to !hasActed
+
+  // Forces the app to update with a hook? Not 100% how this works
   function useForceUpdate() {
-    const [value, setValue] = useState(0); // integer state
-    console.log('Create New Char Only Works Once!');
-    characters.push('1234567890123');
-    return () => setValue((value) => value + 0); // update state to force render
+    console.log('Refreshing');
+    characters.push('NEW');
+    setValue((value) => value + 0); // update state to force render
   }
 
-  const forceUpdate = useForceUpdate();
+  function doSomething() {
+    console.log('Doing something!!!');
+  }
+
+  // const forceUpdate = useForceUpdate(); // Being invoked immediately ❌ ❌ ❌
+  // const doit = doSomething();
+  console.log('Starting App! ✅ ✅ ✅');
 
   return (
     <View style={appStyles.container}>
       <ScrollView>
         {characters.map((character) => {
+          // Mapping Cards
           return (
             <CharacterCard
               key={character}
@@ -50,23 +60,12 @@ const App = () => {
         })}
       </ScrollView>
 
-      <View>
-        {/* <Button
-          title='Add New Char'
+      <View style={{ paddingTop: 11 }}>
+        <Pressable
           style={styles.buttons}
-          fontSize='36'
-          color='#FFF596'
-          alignItems='left'
-          borderRadius='8'/>
-
-          <Button
-          title='Reset'
-          style={styles.buttons}
-          fontSize='36'
-          color='#FFF596'
-          borderRadius='8'/> */}
-
-        <Pressable style={styles.buttons} color="#5D2725" onPress={forceUpdate}>
+          color="#5D2725"
+          onPress={useForceUpdate}
+        >
           <Text style={styles.text}>ADD NEW</Text>
         </Pressable>
         <Pressable style={styles.buttons} color="#5D2725">
