@@ -25,7 +25,6 @@ const appStyles = {
   },
   buttons: {
     marginTop: 5,
-    paddingLeft: 20,
     fontSize: 36,
     fontWeight: 'bold',
     flex: 1,
