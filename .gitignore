@@ -9,8 +9,11 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+
+# My additions
 test.css
 ./test.css
+exampleCharObj.js
 
 # macOS
 .DS_Store
