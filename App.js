@@ -33,19 +33,18 @@ const App = () => {
 
   // On tap of card, change their status to !hasActed
 
-  // Forces the app to update with a hook? Not 100% how this works
+  // Forces the app to update with a hook? Not 100% how this works   ❌ FIX ME ❌
   function useForceUpdate() {
     console.log('Refreshing');
     characters.push('NEW');
-    setValue((value) => value + 0); // update state to force render
+    return () => setValue((value) => value + 1);
   }
+  // const update = useForceUpdate();
 
   function doSomething() {
     console.log('Doing something!!!');
   }
 
-  // const forceUpdate = useForceUpdate(); // Being invoked immediately ❌ ❌ ❌
-  // const doit = doSomething();
   console.log('Starting App! ✅ ✅ ✅');
 
   return (
@@ -67,7 +66,7 @@ const App = () => {
         <Pressable
           style={styles.buttons}
           color="#5D2725"
-          onPress={useForceUpdate}
+          // onPress={() => useForceUpdate}
         >
           <Text style={styles.text}>ADD NEW</Text>
         </Pressable>
