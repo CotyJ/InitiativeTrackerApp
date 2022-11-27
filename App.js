@@ -22,9 +22,12 @@ const App = () => {
   const [value, setValue] = useState(0); // integer state
 
   // Refactor character array into characters objects
-  // var charactersObj = {};
+  var charactersObj = {
+    acted: {},
+    notActed: {},
+  };
 
-  // Sort characters by initiative value
+  // Sort characters by initiative value using sortActed
 
   // If they have taken their turn, move them to below the "End of Turn" separator
 

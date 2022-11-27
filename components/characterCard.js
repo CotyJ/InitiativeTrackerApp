@@ -10,14 +10,23 @@ const CharacterCard = (props) => {
     console.log('Tapped on Text!');
     setCount((prevCount) => prevCount + 1);
   };
+  // const hold = TapText();
 
-  // Open card handler?
+  // Expand card handler?
+  const PressCheck = () => {
+    console.log(`Long press on ${props.charName}`);
+  };
 
   const styles = StyleSheet.create(appStyles);
 
   return (
     <View style={styles.card}>
-      <Text onPress={TapText} fontSize="32" style={styles.hpText}>
+      <Text
+        onPress={TapText}
+        fontSize="32"
+        style={styles.hpText}
+        onLongPress={PressCheck}
+      >
         {`${props.charName}`}
       </Text>
 
