@@ -1,12 +1,12 @@
 // Functions for sorting and organizing inititive
 
 const characters = [
-  { name: 'Kaiper', initiative: 19, hasActed: true, isTemp: false },
-  { name: 'Gar', initiative: 21, hasActed: true, isTemp: false },
-  { name: 'Alphonse', initiative: 1, hasActed: false, isTemp: false },
-  { name: 'Asstin', initiative: 16, hasActed: false, isTemp: false },
-  { name: 'Skeleton 1', initiative: 12, hasActed: false, isTemp: false },
-  { name: 'Skeleton 2', initiative: 6, hasActed: false, isTemp: false },
+  { key: 'Kaiper', initiative: 19, hasActed: true, isTemp: false },
+  { key: 'Gar', initiative: 21, hasActed: true, isTemp: false },
+  { key: 'Alphonse', initiative: 1, hasActed: false, isTemp: false },
+  { key: 'Asstin', initiative: 16, hasActed: false, isTemp: false },
+  { key: 'Skeleton 1', initiative: 12, hasActed: false, isTemp: false },
+  { key: 'Skeleton 2', initiative: 6, hasActed: false, isTemp: false },
 ];
 
 // return a new object of characters sorted by initiative descending
@@ -25,7 +25,7 @@ const characters = [
 //   for (let i = max; i > 0; i--) {
 //     for (let j = 0; j < list.length; j++) {
 //       if (list[j].initiative === i) {
-//         var n = list[j].name.toString();
+//         var n = list[j].key.toString();
 //         result[n] = list[j].initiative;
 //       }
 //     }
@@ -46,9 +46,9 @@ const sortActed = (list) => {
     var char = list[i];
 
     if (list[i].hasActed) {
-      hasGone[char.name] = list[i].initiative;
+      hasGone[char.key] = list[i].initiative;
     } else {
-      hasNotActed[char.name] = char.initiative;
+      hasNotActed[char.key] = char.initiative;
     }
   }
 

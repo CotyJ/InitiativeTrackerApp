@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ScrollView, Pressable } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Pressable,
+  Modal,
+  SectionList,
+} from 'react-native';
 
 import CharacterCard from './components/characterCard.js';
 import appStyles from './appStyles.js';
@@ -8,24 +16,29 @@ import sortActed from './test.js';
 
 const App = () => {
   // Temporary character storage. Refactor out later
-  const characters = [
-    'Kaiper',
-    'Alfonse',
-    'Gar',
-    'Ghoul 1',
-    'Ghoul 2',
-    'Ghoul 3',
-    'Ghoul 4',
-    'Ghoul 5',
-  ];
+  // const characters = [
+  //   'Kaiper',
+  //   'Alfonse',
+  //   'Gar',
+  //   'Ghoul 1',
+  //   'Ghoul 2',
+  //   'Ghoul 3',
+  //   'Ghoul 4',
+  //   'Ghoul 5',
+  // ];
 
   const [value, setValue] = useState(0); // integer state
+  const [modalVisible, setModalVisible] = useState(false); // modal state
 
   // Refactor character array into characters objects
-  var charactersObj = {
-    acted: {},
-    notActed: {},
-  };
+  var charactersObj = [
+    { title: 'acted', data: ['Gar', 21, 'Kaiper', 19] },
+    { title: 'END OF TURN', data: ['END OF TURN'] },
+    {
+      title: 'notActed',
+      data: ['Alphonse', 'Asstin', 16, 'Skeleton 1', 12, 'Skeleton 2', 6],
+    },
+  ];
 
   // Sort characters by initiative value using sortActed
 
@@ -45,22 +58,18 @@ const App = () => {
     console.log('Doing something!!!');
   }
 
-  console.log('Starting App! ✅ ✅ ✅');
+  console.log('\n\nStarting App! ✅ ✅ ✅');
 
   return (
     <View style={appStyles.container}>
-      <ScrollView>
-        {characters.map((character) => {
-          // Mapping Cards
-          return (
-            <CharacterCard
-              key={character}
-              charName={character}
-              style={styles.card}
-            />
-          );
-        })}
-      </ScrollView>
+      <SectionList
+        sections={charactersObj}
+        keyExtractor={(item) => item}
+        renderItem={(data) => <CharacterCard charName={data.item} />}
+        // renderSectionHeader={({ section }) => (
+        //   <CharacterCard charName={section.title} />
+        // )}
+      />
 
       <View style={{ paddingTop: 11 }}>
         <Pressable
